@@ -1,6 +1,6 @@
-package repositories;
+package com.alarm.repositories;
 
-import models.User;
+import com.alarm.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {

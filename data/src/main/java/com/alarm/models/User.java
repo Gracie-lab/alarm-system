@@ -1,6 +1,4 @@
-package models;
-
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+package com.alarm.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
