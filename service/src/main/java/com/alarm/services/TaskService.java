@@ -6,7 +6,7 @@ import com.alarm.models.Task;
 
 public interface TaskService {
 
-    public Task createTask(CreateTaskDto taskDto) throws TaskException;
+    public Task createTaskFrom(CreateTaskDto taskDto) throws TaskException;
 
     public Task saveTask(Task task);
 

@@ -13,15 +13,18 @@ public class TaskServiceImpl implements TaskService{
     TaskRepository taskRepository;
 
     @Override
-    public Task createTask(CreateTaskDto taskDto) throws TaskException {
-        if(taskRepository.findByTaskName(taskDto.getTaskName()).isPresent()){
-            throw new TaskException("Task exists. Do you want to update this task?");
-        }
-        else{
-            Task task = TaskDtoMapper.mapTaskDtoToTaskObjecr(taskDto);
-            return taskRepository.save(task);
+    public Task createTaskFrom(CreateTaskDto taskDto) throws TaskException {
+        boolean taskIsPresent = taskRepository.findByTaskName(taskDto.getTaskName()).isPresent();
 
-        }
+        if(taskIsPresent) throw new TaskException("Task exists. Do you want to update this task?");
+        else return createTask(taskDto);
+
+    }
+
+
+    private Task createTask(CreateTaskDto taskDto) {
+        Task task = TaskDtoMapper.mapTaskDtoToTaskObjecr(taskDto);
+        return taskRepository.save(task);
     }
 
     @Override
