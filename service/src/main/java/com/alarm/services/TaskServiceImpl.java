@@ -35,11 +35,10 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public void removeTask(Integer taskId) {
         taskRepository.deleteById(taskId);
-
     }
 
     @Override
-    public Task updateTask(Integer taskId) {
+    public Task editTask(Integer taskId) {
             return null;
     }
 }

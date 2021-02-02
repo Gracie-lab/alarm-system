@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="security" />
         <module name="data" />
         <module name="web" />
         <module name="service" />
@@ -15,6 +16,7 @@
     <bytecodeTargetLevel>
       <module name="alarm" target="11" />
       <module name="data" target="11" />
+      <module name="security" target="11" />
       <module name="service" target="11" />
       <module name="web" target="11" />
     </bytecodeTargetLevel>
@@ -23,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="alarm" options="-parameters" />
       <module name="data" options="-parameters" />
+      <module name="security" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="web" options="-parameters" />
     </option>

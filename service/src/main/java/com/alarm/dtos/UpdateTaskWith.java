@@ -15,5 +15,6 @@ public class UpdateTaskWith {
                 Field fieldToUpdate = updateTaskDto.getClass().getDeclaredField(field.getName());
             }
         }
+        return null;
     }
 }
