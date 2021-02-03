@@ -5,8 +5,12 @@ import com.alarm.dtos.CreateTaskDto;
 import com.alarm.dtos.TaskDtoMapper;
 import com.alarm.models.Task;
 import com.alarm.repositories.TaskRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
+@Slf4j
 public class TaskServiceImpl implements TaskService{
 
     @Autowired
@@ -15,6 +19,7 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public Task createTaskFrom(CreateTaskDto taskDto) throws TaskException {
         boolean taskIsPresent = taskRepository.findByTaskName(taskDto.getTaskName()).isPresent();
+        log.info(" -> {}", taskIsPresent);
 
         if(taskIsPresent) throw new TaskException("Task exists. Do you want to update this task?");
         else return createTask(taskDto);
