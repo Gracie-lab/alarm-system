@@ -3,11 +3,15 @@ package com.alarm.services;
 import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
 import com.alarm.dtos.TaskDtoMapper;
+import com.alarm.dtos.UpdateTaskDto;
+import com.alarm.dtos.UpdateTaskWith;
 import com.alarm.models.Task;
 import com.alarm.repositories.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -43,7 +47,13 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task editTask(Integer taskId) {
-            return null;
+    public Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException {
+        Optional<Task> taskToBeEdited = findTaskById(taskId);
+        Task editedTask = UpdateTaskWith.updateTaskWith(updateTaskDto, taskToBeEdited.get());
+        return saveTask(editedTask);
+    }
+
+    private Optional<Task> findTaskById(Integer taskId) {
+        return taskRepository.findById(taskId);
     }
 }

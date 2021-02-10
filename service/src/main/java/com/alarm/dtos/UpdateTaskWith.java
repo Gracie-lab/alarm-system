@@ -7,12 +7,17 @@ import java.lang.reflect.Field;
 public class UpdateTaskWith {
 
 
-    public Task updateTask(UpdateTaskDto updateTaskDto) throws NoSuchFieldException {
-        Task task = null;
+    public static Task updateTaskWith(UpdateTaskDto updateTaskDto, Task task) throws NoSuchFieldException {
+        Field[] fieldsToUpdate = task.getClass().getDeclaredFields();
         Field[] fields = updateTaskDto.getClass().getDeclaredFields();
         for (Field field : fields){
-            if(!field.equals(null)){
-                Field fieldToUpdate = updateTaskDto.getClass().getDeclaredField(field.getName());
+            if(field != null){
+//                Field fieldToUpdate = updateTaskDto.getClass().getDeclaredField(field.getName());
+                for(Field aField : fieldsToUpdate){
+                    if(aField.getName().equals(field.getName())){
+                        aField = field;
+                    }
+                }
             }
         }
         return null;
