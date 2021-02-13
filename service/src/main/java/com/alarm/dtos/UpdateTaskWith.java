@@ -12,7 +12,6 @@ public class UpdateTaskWith {
         Field[] fields = updateTaskDto.getClass().getDeclaredFields();
         for (Field field : fields){
             if(field != null){
-//                Field fieldToUpdate = updateTaskDto.getClass().getDeclaredField(field.getName());
                 for(Field aField : fieldsToUpdate){
                     if(aField.getName().equals(field.getName())){
                         aField = field;
@@ -20,6 +19,6 @@ public class UpdateTaskWith {
                 }
             }
         }
-        return null;
+        return task;
     }
 }

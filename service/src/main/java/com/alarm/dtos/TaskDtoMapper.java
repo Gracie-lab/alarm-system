@@ -5,7 +5,7 @@ import com.sun.source.util.TaskListener;
 
 public class TaskDtoMapper {
 
-    public static Task mapTaskDtoToTaskObjecr(CreateTaskDto taskDto){
+    public static Task mapTaskDtoToTaskObject(CreateTaskDto taskDto){
         Task task = new Task();
 
         task.setTaskName(taskDto.getTaskName());

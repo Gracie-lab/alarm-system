@@ -32,7 +32,7 @@ public class TaskServiceImpl implements TaskService{
 
 
     private Task createTask(CreateTaskDto taskDto) {
-        Task task = TaskDtoMapper.mapTaskDtoToTaskObjecr(taskDto);
+        Task task = TaskDtoMapper.mapTaskDtoToTaskObject(taskDto);
         return taskRepository.save(task);
     }
 
@@ -51,6 +51,16 @@ public class TaskServiceImpl implements TaskService{
         Optional<Task> taskToBeEdited = findTaskById(taskId);
         Task editedTask = UpdateTaskWith.updateTaskWith(updateTaskDto, taskToBeEdited.get());
         return saveTask(editedTask);
+    }
+
+    @Override
+    public Task lockTask() {
+        return null;
+    }
+
+    @Override
+    public Task SearchForTask() {
+        return null;
     }
 
     private Optional<Task> findTaskById(Integer taskId) {

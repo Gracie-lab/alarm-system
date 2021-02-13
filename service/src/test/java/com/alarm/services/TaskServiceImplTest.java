@@ -17,10 +17,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @Slf4j
@@ -50,7 +48,7 @@ class TaskServiceImplTest {
         task.setTaskTime(LocalTime.of(8,30));
         task.setImportance(Importance.MEDIUM);
 
-        Task newTask = TaskDtoMapper.mapTaskDtoToTaskObjecr(task);
+        Task newTask = TaskDtoMapper.mapTaskDtoToTaskObject(task);
 
         when(taskRepository.findByTaskName("My task")).thenReturn(Optional.empty());
         when(taskRepository.save(newTask)).thenReturn(newTask);
