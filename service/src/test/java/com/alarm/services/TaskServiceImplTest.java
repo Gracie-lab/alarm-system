@@ -91,11 +91,12 @@ class TaskServiceImplTest {
 //        assertThat(taskById).isNotEmpty();
 ////        assertThat(taskById).isPresent();
 
-
         UpdateTaskDto updateTaskDto = new UpdateTaskDto();
         updateTaskDto.setTaskName("Sleep");
         updateTaskDto.setCategory(Category.OFFICIAL);
+        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
         taskService.updateTask(updateTaskDto, 6);
+//        System.out.println(task.getTaskName());
         assertThat(task.getTaskName()).isEqualTo("Sleep");
 
     }
