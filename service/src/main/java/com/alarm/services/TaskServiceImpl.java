@@ -4,7 +4,7 @@ import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
 import com.alarm.dtos.TaskDtoMapper;
 import com.alarm.dtos.UpdateTaskDto;
-import com.alarm.dtos.UpdateTaskWith;
+import com.alarm.dtos.UpdateTaskDtoMapper;
 import com.alarm.models.Task;
 import com.alarm.repositories.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -47,9 +47,9 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException {
+    public Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException, IllegalAccessException {
         Optional<Task> taskToBeEdited = findTaskById(taskId);
-        Task editedTask = UpdateTaskWith.updateTaskWith(updateTaskDto, taskToBeEdited.get());
+        Task editedTask = UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, taskToBeEdited.get());
         return saveTask(editedTask);
     }
 

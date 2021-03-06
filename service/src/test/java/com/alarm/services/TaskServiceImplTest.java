@@ -3,6 +3,8 @@ package com.alarm.services;
 import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
 import com.alarm.dtos.TaskDtoMapper;
+import com.alarm.dtos.UpdateTaskDto;
+import com.alarm.dtos.UpdateTaskDtoMapper;
 import com.alarm.models.Category;
 import com.alarm.models.Importance;
 import com.alarm.models.Task;
@@ -57,7 +59,19 @@ class TaskServiceImplTest {
 
         verify(taskRepository, times(1)).findByTaskName("My task");
         verify(taskRepository, times(1)).save(newTask);
+    }
 
+    @Test
+    void sometest() throws IllegalAccessException, NoSuchFieldException {
+        Task task = new Task();
+        task.setCategory(Category.BUSINESS);
+        task.setTaskName("Read");
+        task.setTaskDescription("blablabla");
 
+        UpdateTaskDto updateTaskDto = new UpdateTaskDto();
+        updateTaskDto.setTaskName("Sleep");
+        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+
+        System.out.println(task.getTaskName());
     }
 }
