@@ -15,11 +15,14 @@ public interface TaskService {
 
     void removeTask(Integer taskId);
 
-    Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException, IllegalAccessException;
+//    Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException, IllegalAccessException;
 
     Task lockTask();
 
+    Task getOneTask(Integer id);
+
     Task SearchForTask();
+    Task updateTask(UpdateTaskDto updateTaskDto, Integer taskId) throws NoSuchFieldException, IllegalAccessException;
 
 
 

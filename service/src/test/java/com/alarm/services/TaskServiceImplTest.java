@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @Slf4j
@@ -67,11 +68,35 @@ class TaskServiceImplTest {
         task.setCategory(Category.BUSINESS);
         task.setTaskName("Read");
         task.setTaskDescription("blablabla");
+        task.setId(7);
 
         UpdateTaskDto updateTaskDto = new UpdateTaskDto();
         updateTaskDto.setTaskName("Sleep");
         UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
 
         System.out.println(task.getTaskName());
+    }
+
+    @Test
+    void can_update_task() throws NoSuchFieldException, IllegalAccessException {
+        Task task = new Task();
+        task.setId(6);
+        task.setTaskName("Read");
+        task.setCategory(Category.PERSONAL);
+        task.setLevelOfImportance(Importance.HIGH);
+        taskService.saveTask(task);
+
+//        Optional<Task> taskById = taskService.findTaskById(6);
+////        Task taskById = taskService.findTaskById(6).get();
+//        assertThat(taskById).isNotEmpty();
+////        assertThat(taskById).isPresent();
+
+
+        UpdateTaskDto updateTaskDto = new UpdateTaskDto();
+        updateTaskDto.setTaskName("Sleep");
+        updateTaskDto.setCategory(Category.OFFICIAL);
+        taskService.updateTask(updateTaskDto, 6);
+        assertThat(task.getTaskName()).isEqualTo("Sleep");
+
     }
 }

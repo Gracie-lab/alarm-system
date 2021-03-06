@@ -25,21 +25,21 @@ public class UpdateTaskDtoMapper {
         return task;
     }
 
-    public static void some(Task task) throws IllegalAccessException {
-        Field[] fields = task.getClass().getDeclaredFields();
-//        Field[] fields = updateTaskDto.getClass().getDeclaredFields();
-
-        for (Field field : fields){
-            field.setAccessible(true);
-            String fieldName = field.getName();
-            Object fieldValue = field.get(task);
-            System.out.println(fieldName);
-            if(fieldValue == null){
-                System.out.println("yeah");
-            }
-            else{
-                System.out.println(fieldValue.toString());
-            }
-        }
-    }
+//    public static void some(Task task) throws IllegalAccessException {
+//        Field[] fields = task.getClass().getDeclaredFields();
+////        Field[] fields = updateTaskDto.getClass().getDeclaredFields();
+//
+//        for (Field field : fields){
+//            field.setAccessible(true);
+//            String fieldName = field.getName();
+//            Object fieldValue = field.get(task);
+//            System.out.println(fieldName);
+//            if(fieldValue == null){
+//                System.out.println("yeah");
+//            }
+//            else{
+//                System.out.println(fieldValue.toString());
+//            }
+//        }
+//    }
 }

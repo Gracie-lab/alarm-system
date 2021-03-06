@@ -46,12 +46,12 @@ public class TaskServiceImpl implements TaskService{
         taskRepository.deleteById(taskId);
     }
 
-    @Override
-    public Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException, IllegalAccessException {
-        Optional<Task> taskToBeEdited = findTaskById(taskId);
-        Task editedTask = UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, taskToBeEdited.get());
-        return saveTask(editedTask);
-    }
+//    @Override
+//    public Task editTask(Integer taskId, UpdateTaskDto updateTaskDto) throws NoSuchFieldException, IllegalAccessException {
+//        Optional<Task> taskToBeEdited = findTaskById(taskId);
+//        Task editedTask = UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, taskToBeEdited.get());
+//        return saveTask(editedTask);
+//    }
 
     @Override
     public Task lockTask() {
@@ -59,11 +59,23 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
+    public Task getOneTask(Integer id) {
+        return taskRepository.getOne(id);
+    }
+
+    @Override
     public Task SearchForTask() {
         return null;
     }
 
-    private Optional<Task> findTaskById(Integer taskId) {
+    @Override
+    public Task updateTask(UpdateTaskDto updateTaskDto, Integer taskId) throws NoSuchFieldException, IllegalAccessException {
+        Task task= getOneTask(taskId);
+        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+        return saveTask(task);
+    }
+
+    public Optional<Task> findTaskById(Integer taskId) {
         return taskRepository.findById(taskId);
     }
 }

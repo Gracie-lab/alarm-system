@@ -3,6 +3,7 @@ package com.alarm.repositories;
 import com.alarm.DataConfig;
 import com.alarm.models.Task;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.AnnotationTargetKind;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,9 @@ import org.springframework.test.context.ActiveProfiles;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = DataConfig.class)
@@ -60,6 +63,17 @@ class TaskRepositoryTest {
         assertEquals(LocalTime.of(7,0), task.getTaskTime());
 
 
+    }
+
+    @Test
+    void findTaskById(){
+        Task task = new Task();
+        task.setId(6);
+
+//        Optional<Task> findTask = taskRepository.findById(6);
+        Task getTask = taskRepository.getOne(6);
+        assertThat(getTask).isNotNull();
+        log.info(getTask.getId().toString());
     }
 
 }
