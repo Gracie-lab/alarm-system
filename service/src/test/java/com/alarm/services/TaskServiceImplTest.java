@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -79,12 +81,15 @@ class TaskServiceImplTest {
 
     @Test
     void can_update_task() throws NoSuchFieldException, IllegalAccessException {
+
+        TaskServiceImpl taskService = new TaskServiceImpl();
         Task task = new Task();
-        task.setId(6);
         task.setTaskName("Read");
         task.setCategory(Category.PERSONAL);
         task.setLevelOfImportance(Importance.HIGH);
         taskService.saveTask(task);
+        assertThat(task.getId()).isNotNull();
+        log.info("Task before update -> {}", task);
 
 //        Optional<Task> taskById = taskService.findTaskById(6);
 ////        Task taskById = taskService.findTaskById(6).get();
@@ -95,7 +100,8 @@ class TaskServiceImplTest {
         updateTaskDto.setTaskName("Sleep");
         updateTaskDto.setCategory(Category.OFFICIAL);
         UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
-        taskService.updateTask(updateTaskDto, 6);
+        taskService.updateTask(updateTaskDto, task);
+        log.info("Task after update -> {}", task);
 //        System.out.println(task.getTaskName());
         assertThat(task.getTaskName()).isEqualTo("Sleep");
 

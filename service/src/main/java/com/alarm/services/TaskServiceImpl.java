@@ -75,6 +75,11 @@ public class TaskServiceImpl implements TaskService{
         return saveTask(task);
     }
 
+    public Task updateTask(UpdateTaskDto updateTaskDto, Task task) throws NoSuchFieldException, IllegalAccessException {
+        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+        return saveTask(task);
+    }
+
     public Optional<Task> findTaskById(Integer taskId) {
         return taskRepository.findById(taskId);
     }
