@@ -3,8 +3,7 @@ package com.alarm.services;
 import com.alarm.DataConfig;
 import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
-import com.alarm.dtos.UpdateTaskDto;
-import com.alarm.dtos.UpdateTaskDtoMapper;
+import com.alarm.dtos.EditTaskDto;
 import com.alarm.models.Category;
 import com.alarm.models.Importance;
 import com.alarm.models.Task;
@@ -15,13 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest(classes = DataConfig.class)
@@ -65,11 +62,11 @@ class TaskServiceImplTest_IT {
         assertThat(task.getId()).isNotNull();
         log.info("Task before update -> {}", task);
 
-        UpdateTaskDto updateTaskDto = new UpdateTaskDto();
-        updateTaskDto.setTaskName("Sleep");
-        updateTaskDto.setCategory(Category.OFFICIAL);
-        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
-        taskService.updateTask(updateTaskDto, task);
+        EditTaskDto editTaskDto = new EditTaskDto();
+        editTaskDto.setTaskName("Sleep");
+        editTaskDto.setCategory(Category.OFFICIAL);
+//        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+        taskService.updateTask(editTaskDto, task);
         log.info("Task after update -> {}", task);
         assertThat(task.getTaskName()).isEqualTo("Sleep");
 

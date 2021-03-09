@@ -17,7 +17,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateTaskDto {
+public class EditTaskDto {
     private String taskName;
 
     private LocalDate taskDate;

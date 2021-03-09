@@ -3,7 +3,7 @@ package com.alarm.services;
 import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
 import com.alarm.dtos.TaskDtoMapper;
-import com.alarm.dtos.UpdateTaskDto;
+import com.alarm.dtos.EditTaskDto;
 import com.alarm.dtos.UpdateTaskDtoMapper;
 import com.alarm.models.Task;
 import com.alarm.repositories.TaskRepository;
@@ -69,14 +69,14 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task updateTask(UpdateTaskDto updateTaskDto, Integer taskId) throws NoSuchFieldException, IllegalAccessException {
+    public Task updateTask(EditTaskDto editTaskDto, Integer taskId) throws NoSuchFieldException, IllegalAccessException {
         Task task= getOneTask(taskId);
-        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+        UpdateTaskDtoMapper.updateTaskWith(editTaskDto, task);
         return saveTask(task);
     }
 
-    public Task updateTask(UpdateTaskDto updateTaskDto, Task task) throws NoSuchFieldException, IllegalAccessException {
-        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+    public Task updateTask(EditTaskDto editTaskDto, Task task) throws NoSuchFieldException, IllegalAccessException {
+        UpdateTaskDtoMapper.updateTaskWith(editTaskDto, task);
         return saveTask(task);
     }
 

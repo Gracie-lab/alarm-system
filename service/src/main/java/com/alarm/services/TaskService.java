@@ -2,7 +2,7 @@ package com.alarm.services;
 
 import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
-import com.alarm.dtos.UpdateTaskDto;
+import com.alarm.dtos.EditTaskDto;
 import com.alarm.models.Task;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public interface TaskService {
     Task getOneTask(Integer id);
 
     Task SearchForTask();
-    Task updateTask(UpdateTaskDto updateTaskDto, Integer taskId) throws NoSuchFieldException, IllegalAccessException;
+    Task updateTask(EditTaskDto editTaskDto, Integer taskId) throws NoSuchFieldException, IllegalAccessException;
 
 
 

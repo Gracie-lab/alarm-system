@@ -3,7 +3,7 @@ package com.alarm.services;
 import com.alarm.Exeptions.TaskException;
 import com.alarm.dtos.CreateTaskDto;
 import com.alarm.dtos.TaskDtoMapper;
-import com.alarm.dtos.UpdateTaskDto;
+import com.alarm.dtos.EditTaskDto;
 import com.alarm.dtos.UpdateTaskDtoMapper;
 import com.alarm.models.Category;
 import com.alarm.models.Importance;
@@ -16,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -72,9 +70,9 @@ class TaskServiceImplTest {
         task.setTaskDescription("blablabla");
         task.setId(7);
 
-        UpdateTaskDto updateTaskDto = new UpdateTaskDto();
-        updateTaskDto.setTaskName("Sleep");
-        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
+        EditTaskDto editTaskDto = new EditTaskDto();
+        editTaskDto.setTaskName("Sleep");
+        UpdateTaskDtoMapper.updateTaskWith(editTaskDto, task);
 
         System.out.println(task.getTaskName());
     }
@@ -96,11 +94,11 @@ class TaskServiceImplTest {
 //        assertThat(taskById).isNotEmpty();
 ////        assertThat(taskById).isPresent();
 
-        UpdateTaskDto updateTaskDto = new UpdateTaskDto();
-        updateTaskDto.setTaskName("Sleep");
-        updateTaskDto.setCategory(Category.OFFICIAL);
-        UpdateTaskDtoMapper.updateTaskWith(updateTaskDto, task);
-        taskService.updateTask(updateTaskDto, task);
+        EditTaskDto editTaskDto = new EditTaskDto();
+        editTaskDto.setTaskName("Sleep");
+        editTaskDto.setCategory(Category.OFFICIAL);
+        UpdateTaskDtoMapper.updateTaskWith(editTaskDto, task);
+        taskService.updateTask(editTaskDto, task);
         log.info("Task after update -> {}", task);
 //        System.out.println(task.getTaskName());
         assertThat(task.getTaskName()).isEqualTo("Sleep");
